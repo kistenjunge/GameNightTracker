@@ -2,7 +2,8 @@ package org.kistenjunge.grails.scoreboard
 
 import org.springframework.dao.DataIntegrityViolationException
 
-class ResultsController {
+class ResultController {
+
 	def scaffold = true
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -12,91 +13,91 @@ class ResultsController {
 
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [resultsInstanceList: Results.list(params), resultsInstanceTotal: Results.count()]
+        [resultInstanceList: Result.list(params), resultInstanceTotal: Result.count()]
     }
 
     def create() {
-        [resultsInstance: new Results(params)]
+        [resultInstance: new Result(params)]
     }
 
     def save() {
-        def resultsInstance = new Results(params)
-        if (!resultsInstance.save(flush: true)) {
-            render(view: "create", model: [resultsInstance: resultsInstance])
+        def resultInstance = new Result(params)
+        if (!resultInstance.save(flush: true)) {
+            render(view: "create", model: [resultInstance: resultInstance])
             return
         }
 
-		flash.message = message(code: 'default.created.message', args: [message(code: 'results.label', default: 'Results'), resultsInstance.id])
-        redirect(action: "show", id: resultsInstance.id)
+		flash.message = message(code: 'default.created.message', args: [message(code: 'result.label', default: 'Result'), resultInstance.id])
+        redirect(action: "show", id: resultInstance.id)
     }
 
     def show() {
-        def resultsInstance = Results.get(params.id)
-        if (!resultsInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'results.label', default: 'Results'), params.id])
+        def resultInstance = Result.get(params.id)
+        if (!resultInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'result.label', default: 'Result'), params.id])
             redirect(action: "list")
             return
         }
 
-        [resultsInstance: resultsInstance]
+        [resultInstance: resultInstance]
     }
 
     def edit() {
-        def resultsInstance = Results.get(params.id)
-        if (!resultsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'results.label', default: 'Results'), params.id])
+        def resultInstance = Result.get(params.id)
+        if (!resultInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'result.label', default: 'Result'), params.id])
             redirect(action: "list")
             return
         }
 
-        [resultsInstance: resultsInstance]
+        [resultInstance: resultInstance]
     }
 
     def update() {
-        def resultsInstance = Results.get(params.id)
-        if (!resultsInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'results.label', default: 'Results'), params.id])
+        def resultInstance = Result.get(params.id)
+        if (!resultInstance) {
+            flash.message = message(code: 'default.not.found.message', args: [message(code: 'result.label', default: 'Result'), params.id])
             redirect(action: "list")
             return
         }
 
         if (params.version) {
             def version = params.version.toLong()
-            if (resultsInstance.version > version) {
-                resultsInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'results.label', default: 'Results')] as Object[],
-                          "Another user has updated this Results while you were editing")
-                render(view: "edit", model: [resultsInstance: resultsInstance])
+            if (resultInstance.version > version) {
+                resultInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+                          [message(code: 'result.label', default: 'Result')] as Object[],
+                          "Another user has updated this Result while you were editing")
+                render(view: "edit", model: [resultInstance: resultInstance])
                 return
             }
         }
 
-        resultsInstance.properties = params
+        resultInstance.properties = params
 
-        if (!resultsInstance.save(flush: true)) {
-            render(view: "edit", model: [resultsInstance: resultsInstance])
+        if (!resultInstance.save(flush: true)) {
+            render(view: "edit", model: [resultInstance: resultInstance])
             return
         }
 
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'results.label', default: 'Results'), resultsInstance.id])
-        redirect(action: "show", id: resultsInstance.id)
+		flash.message = message(code: 'default.updated.message', args: [message(code: 'result.label', default: 'Result'), resultInstance.id])
+        redirect(action: "show", id: resultInstance.id)
     }
 
     def delete() {
-        def resultsInstance = Results.get(params.id)
-        if (!resultsInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'results.label', default: 'Results'), params.id])
+        def resultInstance = Result.get(params.id)
+        if (!resultInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'result.label', default: 'Result'), params.id])
             redirect(action: "list")
             return
         }
 
         try {
-            resultsInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'results.label', default: 'Results'), params.id])
+            resultInstance.delete(flush: true)
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'result.label', default: 'Result'), params.id])
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'results.label', default: 'Results'), params.id])
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'result.label', default: 'Result'), params.id])
             redirect(action: "show", id: params.id)
         }
     }
