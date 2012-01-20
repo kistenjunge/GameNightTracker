@@ -3,8 +3,8 @@ package org.kistenjunge.grails.scoreboard
 import org.springframework.dao.DataIntegrityViolationException
 
 class GamerController {
-	def scaffold = true
 
+	def scaffold = true
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {

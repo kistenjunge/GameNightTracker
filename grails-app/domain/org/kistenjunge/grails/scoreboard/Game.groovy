@@ -2,10 +2,13 @@ package org.kistenjunge.grails.scoreboard
 
 class Game {
 	String title
-	String url
+	byte[] image
+	String imageType
+
     static constraints = {
-		title (blank:false, nullable:false)
-		url (url:true, nullable:true)
+	image(nullable:true, maxSize: 16384)
+	imageType(nullable:true)
+	title (blank:false, nullable:false)
     }
     String toString()
     {
