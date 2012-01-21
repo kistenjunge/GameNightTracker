@@ -8,10 +8,10 @@ class Game {
     static constraints = {
 	image(nullable:true, maxSize: 16384)
 	imageType(nullable:true)
-	title (blank:false, nullable:false)
+	title (blank:false, nullable:false, unique:true)
     }
     String toString()
     {
-	return title;
+	"$title"
     }
 }

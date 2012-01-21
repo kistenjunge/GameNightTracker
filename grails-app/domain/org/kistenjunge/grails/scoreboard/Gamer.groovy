@@ -11,14 +11,14 @@ class Gamer {
     static constraints = {
 	name (blank:false, nullable:false)
 	surname (blank:false, nullable:false)
-	gamertag (blank:false, nullable:false)
-	password (blank:false, nullable:false)
+	gamertag (blank:false, nullable:false, unique:true)
+	password (blank:false, nullable:false, password:true)
 	avatar(nullable:true, maxSize: 16384)
 	avatarType(nullable:true)
     }
 
     String toString()
     {
-	return gamertag;
+	"$gamertag"
     }
 }

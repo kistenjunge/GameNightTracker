@@ -6,11 +6,12 @@ class Session {
 	static hasMany = [results:Result]
 
     static constraints = {
-	name (blank:false, nullable:false)
+	date(format:"dd-MM-yyyy")
+	name(blank:false)
     }
 
     String toString()
     {
-	return name;
+	"$name"
     }
 }

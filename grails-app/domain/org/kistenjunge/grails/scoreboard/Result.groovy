@@ -2,13 +2,16 @@ package org.kistenjunge.grails.scoreboard
 
 class Result {
 	static belongsTo = [session:Session]
-	Gamer gamer
+	static hasMany = [scores:Score]
 	Game game
-	int score
 
     static constraints = {
-		gamer(nullable:false)
 		game(nullable:false)
 		session(nullable:false)
     }
+
+    String toString() {
+	"Results for game $game"
+    }
+
 }

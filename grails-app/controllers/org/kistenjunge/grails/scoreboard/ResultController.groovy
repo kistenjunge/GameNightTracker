@@ -4,7 +4,6 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ResultController {
 
-	def scaffold = true
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
