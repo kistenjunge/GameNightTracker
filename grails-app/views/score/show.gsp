@@ -9,19 +9,21 @@
 	</head>
 	<body>
 		<a href="#show-score" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
 		<div id="show-score" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<ol class="property-list score">
+			
+				<g:if test="${scoreInstance?.game}">
+				<li class="fieldcontain">
+					<span id="game-label" class="property-label"><g:message code="score.game.label" default="Game" /></span>
+					
+						<span class="property-value" aria-labelledby="game-label"><g:link controller="game" action="show" id="${scoreInstance?.game?.id}">${scoreInstance?.game?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
 			
 				<g:if test="${scoreInstance?.gamer}">
 				<li class="fieldcontain">
@@ -32,20 +34,20 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${scoreInstance?.gamesNight}">
+				<li class="fieldcontain">
+					<span id="gamesNight-label" class="property-label"><g:message code="score.gamesNight.label" default="Games Night" /></span>
+					
+						<span class="property-value" aria-labelledby="gamesNight-label"><g:link controller="session" action="show" id="${scoreInstance?.gamesNight?.id}">${scoreInstance?.gamesNight?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${scoreInstance?.points}">
 				<li class="fieldcontain">
 					<span id="points-label" class="property-label"><g:message code="score.points.label" default="Points" /></span>
 					
 						<span class="property-value" aria-labelledby="points-label"><g:fieldValue bean="${scoreInstance}" field="points"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${scoreInstance?.result}">
-				<li class="fieldcontain">
-					<span id="result-label" class="property-label"><g:message code="score.result.label" default="Result" /></span>
-					
-						<span class="property-value" aria-labelledby="result-label"><g:link controller="result" action="show" id="${scoreInstance?.result?.id}">${scoreInstance?.result?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>

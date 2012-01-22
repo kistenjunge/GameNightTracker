@@ -18,18 +18,18 @@
 	<g:textField name="name" required="" value="${sessionInstance?.name}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: sessionInstance, field: 'results', 'error')} ">
-	<label for="results">
-		<g:message code="session.results.label" default="Results" />
+<div class="fieldcontain ${hasErrors(bean: sessionInstance, field: 'scores', 'error')} ">
+	<label for="scores">
+		<g:message code="session.scores.label" default="Scores" />
 		
 	</label>
 	
 <ul class="one-to-many">
-<g:each in="${sessionInstance?.results?}" var="r">
-    <li><g:link controller="result" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></li>
+<g:each in="${sessionInstance?.scores?}" var="s">
+    <li><g:link controller="score" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
 </g:each>
 <li class="add">
-<g:link controller="result" action="create" params="['session.id': sessionInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'result.label', default: 'Result')])}</g:link>
+<g:link controller="score" action="create" params="['session.id': sessionInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'score.label', default: 'Score')])}</g:link>
 </li>
 </ul>
 

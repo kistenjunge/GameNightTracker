@@ -9,13 +9,6 @@
 	</head>
 	<body>
 		<a href="#show-session" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
 		<div id="show-session" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -41,12 +34,12 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${sessionInstance?.results}">
+				<g:if test="${sessionInstance?.scores}">
 				<li class="fieldcontain">
-					<span id="results-label" class="property-label"><g:message code="session.results.label" default="Results" /></span>
+					<span id="scores-label" class="property-label"><g:message code="session.scores.label" default="Scores" /></span>
 					
-						<g:each in="${sessionInstance.results}" var="r">
-						<span class="property-value" aria-labelledby="results-label"><g:link controller="result" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>
+						<g:each in="${sessionInstance.scores}" var="s">
+						<span class="property-value" aria-labelledby="scores-label"><g:link controller="score" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>

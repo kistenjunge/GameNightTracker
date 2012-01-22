@@ -7,6 +7,7 @@ class Gamer {
 	String password
 	byte[] avatar
 	String avatarType
+	static hasMany = [scores:Score]
 
     static constraints = {
 	name (blank:false, nullable:false)

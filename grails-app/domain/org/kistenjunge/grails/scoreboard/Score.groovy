@@ -1,12 +1,11 @@
 package org.kistenjunge.grails.scoreboard
 
 class Score {
-	static belongsTo = [result:Result]
-	Gamer gamer
+	static belongsTo = [gamer:Gamer]
+	Game game
+	Session gamesNight
 	int points
     static constraints = {
-	gamer(nullable:false)
-	points(nullable:false)
     }
 
     String toString(){

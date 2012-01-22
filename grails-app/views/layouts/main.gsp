@@ -18,7 +18,11 @@
         <r:layoutResources />
 	</head>
 	<body>
-		<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>
+		<g:render template="/layouts/header"/>
+		<div id="menu" class="nav">
+			<nav:render group="tabs"/><br/>
+			<nav:renderSubItems group="tabs"/>
+	        </div>
 		<g:layoutBody/>
 		<div class="footer" role="contentinfo"></div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>

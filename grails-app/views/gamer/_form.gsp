@@ -50,3 +50,20 @@
 	<g:textField name="avatarType" value="${gamerInstance?.avatarType}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: gamerInstance, field: 'scores', 'error')} ">
+	<label for="scores">
+		<g:message code="gamer.scores.label" default="Scores" />
+		
+	</label>
+	
+<ul class="one-to-many">
+<g:each in="${gamerInstance?.scores?}" var="s">
+    <li><g:link controller="score" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="score" action="create" params="['gamer.id': gamerInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'score.label', default: 'Score')])}</g:link>
+</li>
+</ul>
+
+</div>
+

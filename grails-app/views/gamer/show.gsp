@@ -9,13 +9,6 @@
 	</head>
 	<body>
 		<a href="#show-gamer" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
 		<div id="show-gamer" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
@@ -71,6 +64,17 @@
 					<span id="avatarType-label" class="property-label"><g:message code="gamer.avatarType.label" default="Avatar Type" /></span>
 					
 						<span class="property-value" aria-labelledby="avatarType-label"><g:fieldValue bean="${gamerInstance}" field="avatarType"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${gamerInstance?.scores}">
+				<li class="fieldcontain">
+					<span id="scores-label" class="property-label"><g:message code="gamer.scores.label" default="Scores" /></span>
+					
+						<g:each in="${gamerInstance.scores}" var="s">
+						<span class="property-value" aria-labelledby="scores-label"><g:link controller="score" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></span>
+						</g:each>
 					
 				</li>
 				</g:if>

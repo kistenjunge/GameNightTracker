@@ -4,6 +4,17 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ScoreController {
 
+    static navigation = [
+		group:'tabs', 
+		order:10, 
+		title:'Highscore', 
+		action:'list',
+		subItems: [
+			[action:'list', order:10, title:'Show Highscore'],
+			[action:'create', order:20, title:'Add a score']
+		]
+	]
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
@@ -27,7 +38,8 @@ class ScoreController {
         }
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'score.label', default: 'Score'), scoreInstance.id])
-        redirect(action: "show", id: scoreInstance.id)
+        redirect(action: "list")
+	return
     }
 
     def show() {
