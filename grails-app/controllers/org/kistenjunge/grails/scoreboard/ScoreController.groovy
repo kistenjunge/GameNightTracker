@@ -1,6 +1,7 @@
 package org.kistenjunge.grails.scoreboard
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.*
 
 class ScoreController {
 
@@ -18,7 +19,7 @@ class ScoreController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index() {
-        redirect(action: "list", params: params)
+	redirect(action: "list", params: params)
     }
 
     def list() {

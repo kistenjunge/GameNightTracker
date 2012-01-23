@@ -586,4 +586,18 @@ th:hover, tr:hover {
 a.skip {
 	position: absolute;
 	left: -9999px;
+
+img.avatar {
+  width: 6.0em;
+  height: 7.5em;
+}
+img.avatar_small {
+   width: 4em;
+   height: 5em;
+}
+
+img.avatar_tiny {
+  width: 2em;
+  height: 2.5em;
+}
 }

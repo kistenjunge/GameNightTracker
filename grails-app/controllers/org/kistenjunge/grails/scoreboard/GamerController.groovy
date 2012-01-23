@@ -111,4 +111,18 @@ class GamerController {
             redirect(action: "show", id: params.id)
         }
     }
+
+	def avatar_image = {
+		def avatarUser = Gamer.get(params.id)
+  		if (!avatarUser || !avatarUser.avatar || !avatarUser.avatarType) {
+    			response.sendError(404)
+    			return;
+  		}
+ 		 response.setContentType(avatarUser.avatarType)
+ 		 response.setContentLength(avatarUser.avatar.size())
+		  OutputStream out = response.getOutputStream();
+  		out.write(avatarUser.avatar);
+  		out.close();
+	}
+
 }

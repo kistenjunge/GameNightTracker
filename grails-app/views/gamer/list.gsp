@@ -18,17 +18,13 @@
 				<thead>
 					<tr>
 					
+						<g:sortableColumn property="gamertag" title="${message(code: 'gamer.gamertag.label', default: 'Gamertag')}" />
+
 						<g:sortableColumn property="name" title="${message(code: 'gamer.name.label', default: 'Name')}" />
 					
 						<g:sortableColumn property="surname" title="${message(code: 'gamer.surname.label', default: 'Surname')}" />
 					
-						<g:sortableColumn property="gamertag" title="${message(code: 'gamer.gamertag.label', default: 'Gamertag')}" />
-					
-						<g:sortableColumn property="password" title="${message(code: 'gamer.password.label', default: 'Password')}" />
-					
 						<g:sortableColumn property="avatar" title="${message(code: 'gamer.avatar.label', default: 'Avatar')}" />
-					
-						<g:sortableColumn property="avatarType" title="${message(code: 'gamer.avatarType.label', default: 'Avatar Type')}" />
 					
 					</tr>
 				</thead>
@@ -36,18 +32,15 @@
 				<g:each in="${gamerInstanceList}" status="i" var="gamerInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${gamerInstance.id}">${fieldValue(bean: gamerInstance, field: "name")}</g:link></td>
+						<td><g:link action="show" id="${gamerInstance.id}">${fieldValue(bean: gamerInstance, field: "gamertag")}</g:link></td>
+					
+						<td>${fieldValue(bean: gamerInstance, field: "name")}</td>
 					
 						<td>${fieldValue(bean: gamerInstance, field: "surname")}</td>
 					
-						<td>${fieldValue(bean: gamerInstance, field: "gamertag")}</td>
-					
-						<td>${fieldValue(bean: gamerInstance, field: "password")}</td>
-					
-						<td>${fieldValue(bean: gamerInstance, field: "avatar")}</td>
-					
-						<td>${fieldValue(bean: gamerInstance, field: "avatarType")}</td>
-					
+						<td><g:if test="${gamerInstance.avatar}">
+  <img class="avatar" src="${createLink(controller:'gamer', action:'avatar_image', id:gamerInstance.ident())}" />
+</g:if></td>
 					</tr>
 				</g:each>
 				</tbody>

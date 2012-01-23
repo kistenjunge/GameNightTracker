@@ -54,7 +54,9 @@
 			
 				<g:if test="${gamerInstance?.avatar}">
 				<li class="fieldcontain">
-					<span id="avatar-label" class="property-label"><g:message code="gamer.avatar.label" default="Avatar" /></span>
+					<span id="avatar-label" class="property-label">
+						<img class="avatar" src="${createLink(controller:'gamer', action:'avatar_image', id:gamerInstance?.ident())}" />
+					</span>
 					
 				</li>
 				</g:if>
